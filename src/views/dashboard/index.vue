@@ -8,12 +8,19 @@
       class-name="custom-class"
       @click="sayHi"
     ></svg-icon>
+    <br />
+    <br />
+    <br />
+    <el-button>按钮</el-button>
   </div>
 </template>
 
 <script setup lang="ts">
+// import { getCurrentInstance } from "vue"
+const { proxy } = getCurrentInstance()!
 const sayHi = () => {
-  alert("hi svg")
+  // alert("hi svg")
+  proxy?.$message.success("恭喜你，这是一条成功消息")
 }
 </script>
 
