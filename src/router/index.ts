@@ -53,8 +53,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         component: () =>
           import(/* webpackChunkName: "menu" */ "@/views/system/menu.vue"),
         meta: {
-          title: "Menu Management",
-          icon: "list"
+          title: "Menu Management"
         }
       },
       {
@@ -62,8 +61,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         component: () =>
           import(/* webpackChunkName: "role" */ "@/views/system/role.vue"),
         meta: {
-          title: "Role Management",
-          icon: "list"
+          title: "Role Management"
         }
       },
       {
@@ -71,8 +69,7 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         component: () =>
           import(/* webpackChunkName: "user" */ "@/views/system/user.vue"),
         meta: {
-          title: "User Management",
-          icon: "list"
+          title: "User Management"
         }
       }
     ]
@@ -93,7 +90,8 @@ const constantRoutes: Array<RouteRecordRaw> = [
             /* webpackChunkName: "dashboard" */ "@/views/dashboard/index.vue"
           ),
         meta: {
-          title: "Dashboard" // 需要配置声明文件否则无法提示
+          title: "Dashboard", // 需要配置声明文件否则无法提示
+          icon: "dashboard"
         }
       }
     ]
