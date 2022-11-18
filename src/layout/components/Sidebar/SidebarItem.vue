@@ -1,20 +1,22 @@
 <template>
   <div class="sidebar-item-container" v-if="!item.meta || !item.meta.hidden">
     <!-- 如果有一个孩子，或者没孩子，或者有一个孩子但是被hidden了 -->
-    <sidebar-item-link
-      :to="resolvePath(theOnlyOneChildRoute.path)"
-      v-if="theOnlyOneChildRoute.meta"
-    >
-      <!-- 如果没有meta属性意味着不必渲染了 -->
-      <el-menu-item :index="resolvePath(theOnlyOneChildRoute.path)">
-        <el-icon v-if="icon">
-          <svg-icon class="menu-icon" :icon-class="icon"></svg-icon>
-        </el-icon>
-        <template #title>
-          <span>{{ theOnlyOneChildRoute.meta?.title }}</span>
-        </template>
-      </el-menu-item>
-    </sidebar-item-link>
+    <template v-if="theOnlyOneChildRoute">
+      <sidebar-item-link
+        :to="resolvePath(theOnlyOneChildRoute.path)"
+        v-if="theOnlyOneChildRoute.meta"
+      >
+        <!-- 如果没有meta属性意味着不必渲染了 -->
+        <el-menu-item :index="resolvePath(theOnlyOneChildRoute.path)">
+          <el-icon v-if="icon">
+            <svg-icon class="menu-icon" :icon-class="icon"></svg-icon>
+          </el-icon>
+          <template #title>
+            <span>{{ theOnlyOneChildRoute.meta?.title }}</span>
+          </template>
+        </el-menu-item>
+      </sidebar-item-link>
+    </template>
     <!-- 多个子路由时 -->
     <el-sub-menu v-else :index="resolvePath(item.path)" popper-append-to-body>
       <template #title>
@@ -36,7 +38,6 @@
 </template>
 
 <script setup lang="ts">
-import SidebarItemLink from "./SidebarItemLink.vue"
 import type { PropType } from "vue"
 import type { RouteRecordRaw } from "vue-router"
 import path from "path-browserify"
@@ -109,4 +110,7 @@ const resolvePath = (childPath: string) => {
   }
   return path.resolve(props.basePath, childPath)
 }
+// const alwaysShowRootMenu = computed(
+//   () => props.item.meta && props.item.meta.alwaysShow
+// )
 </script>
