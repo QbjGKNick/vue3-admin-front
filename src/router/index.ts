@@ -78,6 +78,21 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
         }
       }
     ]
+  },
+  {
+    // 外链路由
+    path: "/external-link",
+    component: Layout,
+    children: [
+      {
+        path: "http://www.zhufengpeixun.com/",
+        redirect: "/",
+        meta: {
+          title: "External Link",
+          icon: "link"
+        }
+      }
+    ]
   }
 ]
 
@@ -97,21 +112,6 @@ const constantRoutes: Array<RouteRecordRaw> = [
         meta: {
           title: "Dashboard", // 需要配置声明文件否则无法提示
           icon: "dashboard"
-        }
-      }
-    ]
-  },
-  {
-    // 外链路由
-    path: "/external-link",
-    component: Layout,
-    children: [
-      {
-        path: "http://www.zhufengpeixun.com/",
-        redirect: "/",
-        meta: {
-          title: "External Link",
-          icon: "link"
         }
       }
     ]
