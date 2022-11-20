@@ -7,8 +7,7 @@
     :background-color="scssVariables.menuBg"
     :text-color="scssVariables.menuText"
     :active-text-color="scssVariables.menuActiveText"
-    :collapse="isCollapse"
-    :collapse-transition="true"
+    :collapse="sidebar.opened"
   >
     <!-- 循环sidebar-item 组件 -->
     <sidebar-item
@@ -22,14 +21,21 @@
 
 <script lang="ts" setup>
 import scssVariables from "@/styles/variables.module.scss"
-import SidebarItem from "./SidebarItem.vue"
+
 // 导入路由表
 import { routes } from "@/router"
 
-const isCollapse = ref(false)
-const route = useRoute()
+import { useAppStore } from "@/stores/app"
+import { storeToRefs } from "pinia"
+
+const store = useAppStore()
+const { sidebar } = storeToRefs(store)
+
+// const isCollapse = ref(false)
 // 渲染路由
 const menuRoutes = computed(() => routes)
+
+const route = useRoute()
 // 根据路由路径 对应 当前激活的菜单 页面刷新后 激活当前路由匹配的菜单
 const activeMenu = computed(() => {
   const { path, meta } = route

@@ -1,12 +1,17 @@
 <template>
   <div class="navbar">
-    <hamburger @toggleClick="toggleSidebar" :is-active="true" />
+    <hamburger @toggleClick="toggleSidebar" :is-active="sidebar.opened" />
   </div>
 </template>
 
 <script setup lang="ts">
+import { useAppStore } from "@/stores/app"
+import { storeToRefs } from "pinia"
+
+const store = useAppStore()
+const { sidebar } = storeToRefs(store)
 const toggleSidebar = () => {
-  console.log("click")
+  store.toggleSidebar()
 }
 </script>
 
