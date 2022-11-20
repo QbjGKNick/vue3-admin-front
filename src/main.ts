@@ -2,6 +2,7 @@ import { createApp } from "vue"
 import App from "./App.vue"
 import router from "./router/index"
 import { createPinia } from "pinia"
+import piniaPluginPersistedstate from "pinia-plugin-persistedstate"
 // import ElementPlus from "element-plus"
 // import "element-plus/dist/index.css"
 // 初始化css，重置 css 默认样式
@@ -17,10 +18,12 @@ import "virtual:svg-icons-register"
 import installElementPlus from "./plugins/element"
 
 const app = createApp(App)
+const pinia = createPinia()
 // app.use(ElementPlus)
 app.use(installElementPlus)
 app.use(router)
-app.use(createPinia())
+pinia.use(piniaPluginPersistedstate)
+app.use(pinia)
 // 使用 icon 组件
 app.use(initSvgIcon)
 app.mount("#app")

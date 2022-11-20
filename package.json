@@ -32,6 +32,7 @@
     "eslint-plugin-vue": "^9.7.0",
     "husky": "^8.0.2",
     "path-browserify": "^1.0.1",
+    "pinia-plugin-persistedstate": "^2.4.0",
     "prettier": "^2.7.1",
     "sass": "^1.56.1",
     "svgo": "^3.0.1",
