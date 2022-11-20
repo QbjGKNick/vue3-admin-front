@@ -32,6 +32,10 @@ const route = useRoute()
 const menuRoutes = computed(() => routes)
 // 根据路由路径 对应 当前激活的菜单 页面刷新后 激活当前路由匹配的菜单
 const activeMenu = computed(() => {
-  return route.path
+  const { path, meta } = route
+  if (meta.activeMenu) {
+    return meta.activeMenu
+  }
+  return path
 })
 </script>
