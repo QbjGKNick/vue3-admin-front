@@ -16,6 +16,7 @@ specifiers:
   husky: ^8.0.2
   normalize.css: ^8.0.1
   path-browserify: ^1.0.1
+  path-to-regexp: ^6.2.1
   pinia: ^2.0.23
   pinia-plugin-persistedstate: ^2.4.0
   prettier: ^2.7.1
@@ -35,6 +36,7 @@ specifiers:
 dependencies:
   element-plus: 2.2.21_vue@3.2.45
   normalize.css: 8.0.1
+  path-to-regexp: 6.2.1
   pinia: 2.0.23_zwu2zepfy3m6u2gunxlolp35gi
   unplugin-element-plus: 0.4.1_vite@3.2.3
   vue: 3.2.45
@@ -478,7 +480,7 @@ packages:
     dev: true
 
   /@types/path-browserify/1.0.0:
-    resolution: {integrity: sha512-XMCcyhSvxcch8b7rZAtFAaierBYdeHXVvg2iYnxOV0MCQHmPuRRmGZPFDRzPayxcGiiSL1Te9UIO+f3cuj0tfw==, registry: https://skimdb.npmjs.com/registry/}
+    resolution: {integrity: sha512-XMCcyhSvxcch8b7rZAtFAaierBYdeHXVvg2iYnxOV0MCQHmPuRRmGZPFDRzPayxcGiiSL1Te9UIO+f3cuj0tfw==, registry: https://skimdb.npmjs.com/registry/, tarball: https://skimdb.npmjs.com/registry/@types/path-browserify/-/path-browserify-1.0.0.tgz}
     dev: true
 
   /@types/semver/7.3.13:
@@ -3020,7 +3022,7 @@ packages:
     dev: true
 
   /path-browserify/1.0.1:
-    resolution: {integrity: sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g==, registry: https://skimdb.npmjs.com/registry/}
+    resolution: {integrity: sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g==, registry: https://skimdb.npmjs.com/registry/, tarball: https://skimdb.npmjs.com/registry/path-browserify/-/path-browserify-1.0.1.tgz}
     dev: true
 
   /path-exists/4.0.0:
@@ -3040,6 +3042,10 @@ packages:
 
   /path-parse/1.0.7:
     resolution: {integrity: sha1-+8EUtgykKzDZ2vWFjkvWi77bZzU=}
+
+  /path-to-regexp/6.2.1:
+    resolution: {integrity: sha512-JLyh7xT1kizaEvcaXOQwOc2/Yhw6KZOvPf1S8401UyLk86CU79LN3vl7ztXGm/pZ+YjoyAJ4rxmHwbkBXJX+yw==}
+    dev: false
 
   /path-type/4.0.0:
     resolution: {integrity: sha1-hO0BwKe6OAr+CdkKjBgNzZ0DBDs=}

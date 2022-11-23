@@ -13,6 +13,7 @@
   "dependencies": {
     "element-plus": "^2.2.21",
     "normalize.css": "^8.0.1",
+    "path-to-regexp": "^6.2.1",
     "pinia": "^2.0.23",
     "unplugin-element-plus": "^0.4.1",
     "vue": "^3.2.41",
