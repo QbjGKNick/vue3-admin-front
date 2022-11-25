@@ -5,6 +5,12 @@
 
     <div class="right-menu">
       <screenfull class="right-menu-item hover-effect"></screenfull>
+
+      <!-- element 组件size切换 -->
+      <el-tooltip content="Global Size" effect="dark" placement="bottom">
+        <size-select class="right-menu-item hover-effect" />
+      </el-tooltip>
+      <avatar />
     </div>
   </div>
 </template>
