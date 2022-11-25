@@ -26,6 +26,7 @@ import { useTagsView } from "@/stores/tagsView"
 import { storeToRefs } from "pinia"
 import { RouteLocationNormalized } from "vue-router"
 import { CloseBold } from "@element-plus/icons-vue"
+import { es } from "element-plus/es/locale"
 
 const store = useTagsView()
 
@@ -53,6 +54,30 @@ const isActive = (tag: RouteLocationNormalized) => {
 // 关闭当前右键的tag路由
 const closeSelectedTag = (view: RouteLocationNormalized) => {
   store.delView(view)
+  // 如果移除的 view 是当前选中状态 view，就让删除后的集合中最后一个 tag view 为选中状态
+  if (isActive(view)) {
+    toLastView(visitedViews.value, view)
+  }
+}
+const router = useRouter()
+const toLastView = (
+  visitedViews: RouteLocationNormalized[],
+  view: RouteLocationNormalized
+) => {
+  // 得到集合中最后一项 tag view 可能没有
+  const lastView = visitedViews[visitedViews.length - 1]
+  if (lastView) {
+    router.push(lastView.path)
+  } else {
+    // 集合中都没有 tag view 时
+    // 如果刚刚删除的正是 Dashboard 就重定向会 Dashboard(首页)
+    if (view.name === "Dashboard") {
+      router.push({ path: view.path })
+    } else {
+      // tag都没有了 删除的也不是Dashboard 只能跳转首页
+      router.push("/")
+    }
+  }
 }
 </script>
 
