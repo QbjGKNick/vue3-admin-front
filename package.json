@@ -11,6 +11,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.0.10",
     "element-plus": "^2.2.21",
     "normalize.css": "^8.0.1",
     "path-to-regexp": "^6.2.1",
