@@ -34,7 +34,7 @@
       background: cyan;
       .navbar {
         height: 50px;
-        background: #1890ff;
+        background: #fff;
       }
       .tags-view {
         height: 34px;

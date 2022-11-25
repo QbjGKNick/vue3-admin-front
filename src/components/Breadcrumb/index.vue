@@ -54,8 +54,10 @@ const getBreadcrumb = () => {
     ).concat(matched)
   }
   levelList.value = matched.filter(
-    (item) => item.mata && item.meta.title && item.meta.breadcrum !== false
+    (item) => item.meta && item.meta?.title && item.meta?.breadcrumb !== false
   )
+  console.log(matched)
+  console.log(levelList.value)
 }
 
 watch(
