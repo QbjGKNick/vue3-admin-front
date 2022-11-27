@@ -13,7 +13,7 @@
       >
         <span>{{ tag.meta.title }}</span>
 
-        <el-icon class="icon-close">
+        <el-icon class="icon-close" v-if="!isAffix(tag)">
           <CloseBold @click.prevent.stop="closeSelectedTag(tag)" />
         </el-icon>
       </router-link>
@@ -24,14 +24,39 @@
 <script setup lang="ts">
 import { useTagsView } from "@/stores/tagsView"
 import { storeToRefs } from "pinia"
-import { RouteLocationNormalized } from "vue-router"
+import { RouteLocationNormalized, RouteRecordRaw } from "vue-router"
 import { CloseBold } from "@element-plus/icons-vue"
-import { es } from "element-plus/es/locale"
+import path from "path-browserify"
+import { routes } from "@/router"
 
 const store = useTagsView()
 
 const { visitedViews } = storeToRefs(store)
 const route = useRoute()
+
+const fillterAffixTags = (routes: RouteRecordRaw[], basePath = "/") => {
+  let tags: RouteLocationNormalized[] = []
+  routes.forEach((route) => {
+    if (route.meta && route.meta.affix) {
+      // 把路由路径解析成完整路径，路由可能是相对路径
+      const tagPath = path.resolve(basePath, route.path)
+      tags.push({
+        name: route.name,
+        path: tagPath,
+        meta: { ...route.meta }
+      } as RouteLocationNormalized)
+    }
+
+    // 深度优先遍历 子路由（子路由路径可能相对于 route.path 父路由路径）
+    if (route.children) {
+      const childTags = fillterAffixTags(route.children, route.path)
+      if (childTags.length) {
+        tags = [...tags, ...childTags]
+      }
+    }
+  })
+  return tags
+}
 // 从 store 里获取 可显示的 tags view
 // 添加 tag
 const addTags = () => {
@@ -39,6 +64,18 @@ const addTags = () => {
   if (name) {
     store.addView(route)
   }
+}
+const initTags = () => {
+  const affixTags = fillterAffixTags(routes)
+  for (const tag of affixTags) {
+    if (tag.name) {
+      store.addView(tag)
+    }
+  }
+}
+
+const isAffix = (tag: RouteLocationNormalized) => {
+  return tag.meta && tag.meta.affix
 }
 watch(
   () => route.path,
@@ -79,9 +116,12 @@ const toLastView = (
     }
   }
 }
+onMounted(() => {
+  initTags()
+})
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .tags-view-container {
   width: 100%;
   height: 34px;
@@ -89,7 +129,7 @@ const toLastView = (
   border-bottom: 1px solid #d8dce5;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 0 3px 0 rgba(0, 0, 0, 0.04);
   .tags-view-wrapper {
-    .tags-view-item {
+    .tags-view-link {
       display: inline-block;
       height: 26px;
       line-height: 26px;
