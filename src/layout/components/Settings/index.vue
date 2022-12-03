@@ -2,7 +2,7 @@
  * @Author: jiangqb jiangqb@citycloud.com.cn
  * @Date: 2022-12-02 19:49:40
  * @LastEditors: jiangqb jiangqb@citycloud.com.cn
- * @LastEditTime: 2022-12-03 15:52:03
+ * @LastEditTime: 2022-12-03 16:03:13
  * @FilePath: /vue3-admin-front/src/layout/components/Settings/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -16,6 +16,12 @@
     <div class="drawer-item">
       <span>Open Tags-view</span>
       <el-switch v-model="tagsView" class="drawer-switch"></el-switch>
+    </div>
+
+    <!-- 侧边栏Logo -->
+    <div class="drawer-item">
+      <span>Sidebar Logo</span>
+      <el-switch v-model="showSidebarLogo" class="drawer-switch"></el-switch>
     </div>
   </div>
 </template>
@@ -31,6 +37,18 @@ const tagsView = computed({
   set(val) {
     settingsStore.changeSetting({
       key: "tagsView",
+      value: val
+    })
+  }
+})
+const showSidebarLogo = computed({
+  get() {
+    // 获取store中 tagsView 状态
+    return settingsStore.settings.sidebarLogo
+  },
+  set(val) {
+    settingsStore.changeSetting({
+      key: "sidebarLogo",
       value: val
     })
   }

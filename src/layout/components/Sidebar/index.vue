@@ -2,12 +2,13 @@
  * @Author: jiangqb jiangqb@citycloud.com.cn
  * @Date: 2022-11-25 19:30:18
  * @LastEditors: jiangqb jiangqb@citycloud.com.cn
- * @LastEditTime: 2022-12-03 15:14:16
+ * @LastEditTime: 2022-12-03 16:17:21
  * @FilePath: /vue3-admin-front/src/layout/components/Sidebar/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <template>
   <!-- <h4 @click="isCollapse = !isCollapse">展收测试</h4> -->
+  <logo v-if="showLogo" :collapse="isCollapse" />
   <el-menu
     class="sidebar-container-menu"
     mode="vertical"
@@ -57,4 +58,9 @@ const activeMenu = computed(() => {
   }
   return path
 })
+
+// 是否显示 logo
+const showLogo = computed(() => settingStore.settings.sidebarLogo)
+// 展开收起状态 稍后放 store 当前是展开就让它收起
+const isCollapse = computed(() => store.sidebar.opened)
 </script>

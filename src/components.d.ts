@@ -29,6 +29,7 @@ declare module '@vue/runtime-core' {
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     Hambuger: typeof import('./components/Hambuger/index.vue')['default']
     Hamburger: typeof import('./components/Hamburger/index.vue')['default']
+    Logo: typeof import('./layout/components/Sidebar/Logo.vue')['default']
     Navbar: typeof import('./layout/components/Navbar/index.vue')['default']
     RightPanel: typeof import('./components/RightPanel/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
