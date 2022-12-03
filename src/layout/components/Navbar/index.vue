@@ -11,6 +11,12 @@
         <size-select class="right-menu-item hover-effect" />
       </el-tooltip>
       <avatar />
+      <div
+        @click="openShowSetting"
+        class="setting right-menu-item hover-effect"
+      >
+        <el-icon><Setting /></el-icon>
+      </div>
     </div>
   </div>
 </template>
@@ -18,6 +24,14 @@
 <script setup lang="ts">
 import { useAppStore } from "@/stores/app"
 import { storeToRefs } from "pinia"
+import { Setting } from "@element-plus/icons-vue"
+const emit = defineEmits<{
+  (event: "showSetting", isShow: boolean): void
+}>()
+// 打开设置面板，触发对应的事件
+const openShowSetting = () => {
+  emit("showSetting", true)
+}
 
 const store = useAppStore()
 const { sidebar } = storeToRefs(store)

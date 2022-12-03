@@ -2,7 +2,7 @@
  * @Author: jiangqb jiangqb@citycloud.com.cn
  * @Date: 2022-12-02 14:19:18
  * @LastEditors: jiangqb jiangqb@citycloud.com.cn
- * @LastEditTime: 2022-12-02 16:31:44
+ * @LastEditTime: 2022-12-03 15:40:50
  * @FilePath: /vue3-admin-front/src/layout/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -13,7 +13,6 @@
     </div>
     <div class="main-container">
       <div class="header">
-        <navbar></navbar>
         <!-- <div class="tags-view">tagsview</div> -->
         <navbar @showSetting="openSetting"></navbar>
         <tags-view></tags-view>
@@ -31,11 +30,12 @@
       :size="settingsPanelWidth"
     >
       <!-- setting 面板设置组件，稍后实现 -->
+      <settings />
     </right-panel>
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 // import sidebar from "./components/Sidebar"
 import variables from "@/styles/variables.module.scss"
 
