@@ -2,7 +2,7 @@
  * @Author: jiangqb jiangqb@citycloud.com.cn
  * @Date: 2022-12-02 14:19:18
  * @LastEditors: jiangqb jiangqb@citycloud.com.cn
- * @LastEditTime: 2022-12-03 15:40:50
+ * @LastEditTime: 2022-12-03 15:55:08
  * @FilePath: /vue3-admin-front/src/layout/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -15,7 +15,7 @@
       <div class="header">
         <!-- <div class="tags-view">tagsview</div> -->
         <navbar @showSetting="openSetting"></navbar>
-        <tags-view></tags-view>
+        <tags-view v-if="showTagsView"></tags-view>
       </div>
       <!-- <div class="app-main">
         <h2>app main</h2>
@@ -37,7 +37,12 @@
 
 <script lang="ts" setup>
 // import sidebar from "./components/Sidebar"
+import { useSettingsStore } from "@/stores/settings"
 import variables from "@/styles/variables.module.scss"
+
+const settingsStore = useSettingsStore()
+const showTagsView = computed(() => settingsStore.settings.tagsView)
+const otherHeight = computed(() => (showSetting.value ? 84 : 50) + "px")
 
 const showSetting = ref(false)
 
@@ -70,7 +75,8 @@ const settingsPanelWidth = computed(() => variables.settingPanelWidth)
     }
     .app-main {
       /* main = 100% - navbar + tagsview */
-      min-height: calc(100vh - 84px);
+      // min-height: calc(100vh - 84px);
+      min-height: calc(100vh - v-bind(otherHeight));
       background: red;
     }
   }
