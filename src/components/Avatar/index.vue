@@ -1,3 +1,11 @@
+<!--
+ * @Author: error: git config user.name && git config user.email & please set dead value or install git
+ * @Date: 2022-12-02 22:56:14
+ * @LastEditors: error: git config user.name && git config user.email & please set dead value or install git
+ * @LastEditTime: 2022-12-04 20:36:34
+ * @FilePath: /vue3-admin-front/src/components/Avatar/index.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <template>
   <el-dropdown class="avatar-container">
     <div class="avatar-wrapper">
@@ -22,8 +30,14 @@
 
 <script setup lang="ts">
 import avatar from "@/assets/vue.svg"
+
+import { useUserStore } from "@/stores/user"
+const store = useUserStore()
+const { proxy } = getCurrentInstance()!
 const logout = () => {
-  console.log("退出登录")
+  store.logout()
+  proxy?.$message.success("退出登录")
+  window.location.reload()
 }
 </script>
 
