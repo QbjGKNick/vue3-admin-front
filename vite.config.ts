@@ -46,5 +46,15 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()] // 生成的组件的类型放到这里
     }),
     ElementPlus()
-  ]
+  ],
+  server: {
+    proxy: {
+      "/dev-api": {
+        target: "http://localhost:3000",
+        ws: true,
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/dev-api/, "/api")
+      }
+    }
+  }
 })

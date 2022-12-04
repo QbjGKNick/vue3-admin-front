@@ -2,7 +2,7 @@
  * @Author: error: git config user.name && git config user.email & please set dead value or install git
  * @Date: 2022-12-04 17:11:29
  * @LastEditors: error: git config user.name && git config user.email & please set dead value or install git
- * @LastEditTime: 2022-12-04 17:56:37
+ * @LastEditTime: 2022-12-04 19:55:52
  * @FilePath: /vue3-admin-front/src/views/login/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -21,7 +21,7 @@
       <el-form-item prop="username">
         <el-input
           placeholder="请输入用户名"
-          v-model="loginForm.username"
+          v-model.trim="loginForm.username"
           ref="usernameRef"
           autocomplete="off"
           tabindex="1"
@@ -39,7 +39,7 @@
           type="password"
           placeholder="请输入密码"
           autocomplete="on"
-          v-model="loginForm.password"
+          v-model.trim="loginForm.password"
           tabindex="2"
           show-password
         >
@@ -65,6 +65,7 @@
 
 <script setup lang="ts">
 import { FormInstance } from "element-plus"
+import { useUserStore } from "@/stores/user"
 
 const loading = ref(false)
 // form ref
@@ -97,10 +98,21 @@ const loginState = reactive({
   }
 })
 // 处理登录逻辑
+const userStore = useUserStore()
+const router = useRouter()
 const handleLogin = () => {
-  loginFormRef.value?.validate((valid) => {
+  loginFormRef.value?.validate(async (valid) => {
     if (valid) {
-      console.log(loginState.loginForm)
+      // console.log(loginState.loginForm)
+      loading.value = true
+      try {
+        await userStore.login(loginState.loginForm)
+        router.push({ path: "/" })
+      } finally {
+        loading.value = false
+      }
+    } else {
+      console.log("error submit")
     }
   })
 }
